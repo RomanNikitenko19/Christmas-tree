@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  transition: all 0.35s linear;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 100vh;
+  background-color: #ffffed;
+}
+
+.tree {
+  width: 240px;
+  height: 240px;
+  transform-style: preserve-3d;
+  perspective: 900px;
+  position: relative;
+  transform: rotateX(60deg);
+  animation: xmass 14s linear infinite;
+}
+/* Merry Christmas and Happy New Year */
+.tree::before {
+  /*decoration on the top of the tree*/
+  content: '';
+  transform:
+    rotateX(-90deg)
+    translateY(-365px);
+  position: absolute;
+  font-size: 1rem;
+  left: 110px;
+  top: 110px;
+}
+
+.tree::after {
+  content: '';
+  width: 440px;
+  height: 440px;
+  background-color: #0003;
+  position: absolute;
+  left: -100px;
+  top: -100px;
+  filter: blur(32px);
+  border-radius: 50%;
+}
+
+.tree span {
+  --height: calc(240px - (var(--i) * 2px));
+  display: block;
+  width: 12px;
+  height: var(--height);
+  margin-top: calc(var(--i) * 1px);
+  background-image: linear-gradient(to bottom,
+    #00ff00,
+    #007700,
+    #77dd99);
+  border-radius: 8px;
+  position: absolute;
+  left: calc(50% - 6px);
+  transform:
+    rotateZ(calc(40deg * var(--i)))
+    translateZ(calc(3px * var(--i)));
+}
+
+.tree span::before {
+  display: block;
+  content: '';
+  width: 4px;
+  height: var(--height);
+  background-color: #00aa00;
+  border-radius: 4px;
+  transform: rotateZ(-90deg);
+}
+
+@keyframes xmass {
+  from {
+    transform: rotateX(60deg)
+    rotateZ(0deg);
+  }
+
+  from {
+    transform: rotateX(60deg) rotateZ(360deg);
+  }
+}
